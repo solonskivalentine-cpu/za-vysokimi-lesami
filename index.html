@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Кейс Валентины Солонской: оформление выставки живописи «За высокими лесами» — от плана зала и рам до афиши и монтажа.">
+<meta property="og:title" content="«За высокими лесами» — кейс Валентины Солонской">
+<meta property="og:image" content="img/stand-room.jpg">
+<style>html{box-sizing:border-box}body{margin:0}img{max-width:100%}</style><title>За высокими лесами</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: single reading column; process steps run top to bottom, each a text block + its own photo grid. Palette and type follow the portfolio and the Figma layout. */
+:root {
+  --bg: #e5e0d0;
+  --surface: #f2efe6;
+  --fg: #1d1a16;
+  --muted: rgba(29, 26, 22, 0.72);
+  --line: rgba(29, 26, 22, 0.16);
+  --accent: #c9622d;
+  --olive: #5b6a45;
+  --plum: #4a3033;
+
+  --serif: 'IBM Plex Serif', Georgia, serif;
+  --sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1d1a16; --surface: #2a2620; --fg: #efeadc; --muted: rgba(239, 234, 220, 0.72);
+    --line: rgba(239, 234, 220, 0.16); --accent: #e07b45; --olive: #a3b386; --plum: #d9b8bb;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1d1a16; --surface: #2a2620; --fg: #efeadc; --muted: rgba(239, 234, 220, 0.72);
+  --line: rgba(239, 234, 220, 0.16); --accent: #e07b45; --olive: #a3b386; --plum: #d9b8bb;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) { .wrap { max-width: 1216px; padding-left: max(48px, env(safe-area-inset-left, 0px)); padding-right: max(48px, env(safe-area-inset-right, 0px)); } }
+
+img { display: block; width: 100%; max-width: 100%; height: auto; object-fit: cover; border-radius: 4px; background: var(--surface); }
+
+.eyebrow {
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); margin: 0;
+}
+h1, h2 { font-family: var(--serif); font-weight: 600; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(38px, 6vw, 68px); line-height: 1.05; color: var(--plum); }
+h2 { font-size: clamp(26px, 3.4vw, 36px); line-height: 1.15; }
+p { margin: 0; }
+.lead { font-size: clamp(18px, 2vw, 21px); line-height: 1.5; color: var(--muted); max-width: 40em; }
+.body { color: var(--muted); max-width: 40em; display: grid; gap: 14px; }
+
+/* Hero */
+.hero { padding-block: 72px 56px; display: grid; gap: 28px; }
+.meta {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0 16px; margin: 8px 0 0;
+}
+.meta div { padding-block: 16px; border-top: 1px solid var(--line); display: grid; gap: 4px; align-content: start; min-width: 0; }
+.meta dt { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--olive); }
+.meta dd { margin: 0; font-size: 16px; line-height: 1.5; }
+
+/* Task block */
+.task { padding-block: 56px; display: grid; gap: 20px; }
+
+/* Steps */
+.step { padding-block: 64px; border-top: 1px solid var(--line); display: grid; gap: 28px; }
+.step-head { display: grid; grid-template-columns: 64px 1fr; gap: 0 20px; align-items: baseline; }
+.step-num { font-family: var(--mono); font-size: 15px; color: var(--olive); font-variant-numeric: tabular-nums; }
+.step-head .body { grid-column: 2; margin-top: 16px; }
+@media (max-width: 600px) {
+  .step-head { grid-template-columns: 1fr; }
+  .step-head .body { grid-column: 1; }
+}
+
+.grid { display: grid; gap: 16px; align-items: start; }
+.g2 { grid-template-columns: 1fr 1fr; }
+.g-feature { grid-template-columns: 679fr 425fr; }
+.g-feature-r { grid-template-columns: 425fr 679fr; }
+@media (max-width: 760px) {
+  .g-feature, .g-feature-r { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) { .g2 { grid-template-columns: 1fr; } }
+
+figure { margin: 0; display: grid; gap: 8px; min-width: 0; align-content: start; }
+figcaption { font-size: 14px; line-height: 1.45; color: var(--muted); }
+.stack { display: grid; gap: 16px; align-content: start; }
+
+/* Aspect boxes follow the frames in the Figma layout */
+.a-hero  { aspect-ratio: 1120 / 667; }
+.a-land  { aspect-ratio: 3 / 2; }
+.a-sq    { aspect-ratio: 1; }
+.a-col   { aspect-ratio: 425 / 454; }
+.a-side  { aspect-ratio: 425 / 451; }
+.a-pfw   { aspect-ratio: 425 / 352; }
+.a-joint { aspect-ratio: 425 / 283; }
+.a-poster{ aspect-ratio: 552 / 725; }
+.a-labels{ aspect-ratio: 1120 / 700; }
+.a-tall  { aspect-ratio: 3 / 4; }
+.a-hw    { aspect-ratio: 537 / 736; width: calc(100% * 537 / 552); }
+
+/* Summary */
+.summary { padding-block: 72px; border-top: 1px solid var(--line); display: grid; gap: 32px; }
+.roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.role { background: var(--surface); border-radius: 6px; padding: 22px 22px 24px; display: grid; gap: 10px; align-content: start; }
+.role h3 { margin: 0; font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.role ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 16px; }
+
+footer { padding-block: 40px 64px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<main class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">Кейс · Выставка живописи · 2026</p>
+    <h1>«За высокими лесами»</h1>
+    <p class="lead">Персональная выставка пейзажной живописи Михаила Псюрникова. Я отвечала за всё, что видит посетитель: от плана развески и рам до афиши и этикеток. Экспозицию мы с художником собирали своими руками.</p>
+    <dl class="meta">
+      <div><dt>Площадка</dt><dd>Молодёжное пространство «Палата ремёсел», Каменноостровский пр., 64Ф, Санкт-Петербург</dd></div>
+      <div><dt>Даты</dt><dd>7 марта — 5 апреля 2026</dd></div>
+      <div><dt>Моя роль</dt><dd>Дизайнер, куратор, менеджер, монтажник</dd></div>
+    </dl>
+    <figure>
+      <img class="a-hero" src="img/stand-room.jpg" alt="Зал выставки: оливковый стенд делит пространство, вдоль стен развешаны небольшие пейзажи">
+    </figure>
+  </header>
+
+  <section class="task">
+    <p class="eyebrow">Задача</p>
+    <h2>Маленькие этюды в большом зале</h2>
+    <div class="body">
+      <p>Почти все работы художника написаны с натуры, на пленэре. Это этюды маслом на картоне, многие размером с ладонь. Зал при этом просторный: высокий потолок, окна, батареи и вентиляционные трубы. В таком пространстве небольшие работы теряются.</p>
+      <p>Нужно было сделать так, чтобы картины смотрелись цельно и весомо, а зал стал камернее и был разбит на понятные зоны.</p>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-head">
+      <span class="step-num">01</span>
+      <h2>План и визуализация</h2>
+      <div class="body">
+        <p>По плану помещения от площадки сделала развёртку всех стен: где висит каждая работа, как они группируются, где окна, батареи и трубы. На плане сразу отмечены решения для пространства: передвижной стенд в центре зала и бумага, которая закрывает трубы.</p>
+        <p>По этой визуализации куратор утвердил экспозицию ещё до монтажа, а на развеске она служила рабочей схемой.</p>
+      </div>
+    </div>
+    <figure>
+      <img src="img/floorplan.jpg" alt="План второго этажа площадки с залом выставки">
+      <div class="grid g2">
+        <img src="img/razv-1.jpg" alt="Развёртка стены с расположением работ">
+        <img src="img/razv-2.jpg" alt="Развёртка стены с расположением работ">
+        <img src="img/razv-3.jpg" alt="Развёртка стены с расположением работ">
+        <img src="img/razv-4.jpg" alt="Развёртка стены с расположением работ">
+      </div>
+      <figcaption>Развёртка стен по плану помещения. В центре передвижной стенд, по периметру группы работ</figcaption>
+    </figure>
+  </section>
+
+  <section class="step">
+    <div class="step-head">
+      <span class="step-num">02</span>
+      <h2>Стенд, который уменьшил зал</h2>
+      <div class="body">
+        <p>Чтобы поделить зал на зоны и сделать его камернее, был собран передвижной стенд из гипсокартона 2200 × 2200 мм на основании глубиной 500 мм. Его покрасили в оливковый, это основной цвет выставки, тот же, что на афише.</p>
+        <p>Стенд закрывает часть зала и создаёт отдельную зону для крупных работ. Трубы на колоннах закрыли зелёной бумагой: из технической детали они превратились в ещё одну плоскость для развески. Стенд передвижной, так как в помещении проводились мероприятия и его нужно было двигать.</p>
+      </div>
+    </div>
+    <div class="grid g-feature">
+      <figure>
+        <img class="a-land" src="img/stand.jpg" alt="Оливковый стенд с двумя работами в широких деревянных рамах">
+        <figcaption>Стенд создаёт отдельную зону для ягодной серии работ</figcaption>
+      </figure>
+      <figure>
+        <img class="a-col" src="img/column.jpg" alt="Колонна, обёрнутая зелёной бумагой, с вертикальным рядом работ">
+        <figcaption>Колонна с трубами, закрытая бумагой</figcaption>
+      </figure>
+    </div>
+    <div class="grid g-feature-r">
+      <figure>
+        <img class="a-side" src="img/stand-side.jpg" alt="Торец оливкового стенда с зимними пейзажами">
+        <figcaption>Торец стенда тоже работает как стена</figcaption>
+      </figure>
+      <figure>
+        <img class="a-land" src="img/hang-grid.jpg" alt="Сетка из девяти небольших пейзажей на оливковой стене">
+        <figcaption>Оливковый фон собирает маленькие работы в единое пятно</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-head">
+      <span class="step-num">03</span>
+      <h2>Рамы своими руками</h2>
+      <div class="body">
+        <p>Большую часть рам мы сделали вместе с художником. Широкий багет из массива сосны визуально увеличивает маленький этюд и даёт ему вес на стене. Тон рам подбирали под каждую работу: от светлого до почти чёрного.</p>
+        <p>Одну раму я расписала вручную: брусника и листья, тот же мотив, что в орнаменте афиши. Ещё для трёх работ я сделала рамы с лазерной гравировкой.</p>
+      </div>
+    </div>
+    <div class="grid g-feature">
+      <figure>
+        <img class="a-sq" src="img/painted-frame.jpg" alt="Рама с ручной росписью ягодами брусники и листьями вокруг лесного пейзажа">
+        <figcaption>Рама с ручной росписью. Работа «Сонная листва», 13 × 13 см.</figcaption>
+      </figure>
+      <div class="stack">
+        <figure>
+          <img class="a-joint" src="img/frame-joint.jpg" alt="Угловое соединение необработанной деревянной рамы крупным планом">
+          <figcaption>Сборка рамы: угловое соединение до тонировки.</figcaption>
+        </figure>
+        <figure>
+          <img class="a-pfw" src="img/painted-frame-wall.jpg" alt="Расписанная рама в развеске на оливковой стене, рядом этикетка">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-head">
+      <span class="step-num">04</span>
+      <h2>Графика: афиша, экспликация, каталог, этикетаж</h2>
+      <div class="body">
+        <p>Визуальный язык выставки строится на оливковом цвете и орнаменте из веток с ягодами. Заголовок набран узкой антиквой, информация спокойным гротеском. Тот же цвет есть на стенде, а тот же орнамент на раме.</p>
+        <p>Экспликация рассказывает о шести годах работы на пленэре в Ленинградской области и Карелии, внизу QR-код на страницу художника. Для посетителей собран многостраничный каталог работ. На этикетке название, размер, материал и год. Где работы висят сеткой, этикетки собраны в ряд под ней, чтобы не дробить стену.</p>
+      </div>
+    </div>
+    <div class="grid g2">
+      <figure>
+        <img class="a-poster" src="img/poster-1.jpg" alt="Афиша выставки «За высокими лесами»: лесной пейзаж в оливковой рамке с орнаментом">
+        <figcaption>Афиша</figcaption>
+      </figure>
+      <figure>
+        <img class="a-poster" src="img/poster-2.jpg" alt="Экспликация выставки на оливковом фоне с QR-кодом">
+        <figcaption>Экспликация</figcaption>
+      </figure>
+    </div>
+    <figure>
+      <img class="a-labels" src="img/labels.jpg" alt="Работы в тёмных и дубовых рамах, под ними ряды белых этикеток">
+      <figcaption>Этикетаж: под сеткой работ этикетки собраны в общий ряд.</figcaption>
+    </figure>
+  </section>
+
+  <section class="step">
+    <div class="step-head">
+      <span class="step-num">05</span>
+      <h2>Монтаж и развеска</h2>
+      <div class="body">
+        <p>Работы развешаны на тросовой системе подвеса по схеме из визуализации. Небольшие этюды собраны в сетки с общими осями: так десять маленьких картин читаются как одна крупная форма и держат стену.</p>
+      </div>
+    </div>
+    <div class="grid g2">
+      <figure>
+        <img class="a-hw" src="img/hang-wall.jpg" alt="Сетка из девяти пейзажей на белой стене">
+        <figcaption>Сетка на белой стене</figcaption>
+      </figure>
+      <figure>
+        <img class="a-tall" src="img/overview.jpg" alt="Вечерний вид зала: группы работ между окнами и зелёная колонна">
+        <figcaption>Зал вечером перед открытием</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-head">
+      <span class="step-num">06</span>
+      <h2>Открытие</h2>
+      <div class="body">
+        <p>На открытии была фольклорная программа и живая музыка. Народные костюмы и северные пейзажи сложились в одну атмосферу.</p>
+      </div>
+    </div>
+    <div class="grid g2">
+      <img class="a-land" src="img/open-1.jpg" alt="Две участницы в народных костюмах на фоне центральной работы выставки">
+      <img class="a-land" src="img/open-4.jpg" alt="Выступающий на фоне работ на оливковом стенде">
+      <img class="a-land" src="img/open-3.jpg" alt="Музыканты играют на фоне большого лесного пейзажа">
+      <img class="a-land" src="img/open-5.jpg" alt="Посетительница рассматривает работы">
+    </div>
+    <img class="a-land" src="img/open-2.jpg" alt="Общее фото участников открытия в зале выставки">
+  </section>
+
+  <section class="step">
+    <div class="step-head">
+      <span class="step-num">07</span>
+      <h2>Демонтаж</h2>
+      <div class="body">
+        <p>После закрытия мы сняли и упаковали работы и вывезли экспозицию. Этот этап тоже был на мне, как и весь цикл выставки.</p>
+      </div>
+    </div>
+    <div class="grid g2">
+      <figure>
+        <img class="a-tall" src="img/frames-back.jpg" alt="Рамы с подвесами, лежащие оборотом вверх, рядом стопка снятых этикеток">
+        <figcaption>Снятые рамы и этикетки</figcaption>
+      </figure>
+      <figure>
+        <img class="a-tall" src="img/packing.jpg" alt="Коробки с упакованными работами в зале">
+        <figcaption>Работы упакованы к вывозу</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="summary">
+    <p class="eyebrow">Что я сделала</p>
+    <h2>Весь путь выставки: от плана зала до коробок</h2>
+    <div class="roles">
+      <div class="role"><h3>Дизайн</h3><ul><li>Визуальный стиль выставки</li><li>Афиша и экспликация</li><li>Каталог работ</li><li>Этикетаж</li></ul></div>
+      <div class="role"><h3>Пространство</h3><ul><li>Развёртка стен и визуализация</li><li>Зонирование зала</li><li>Передвижной стенд 2200 × 2200 мм</li><li>Оформление колонн</li></ul></div>
+      <div class="role"><h3>Руками</h3><ul><li>Изготовление рам</li><li>Ручная роспись рамы</li><li>Лазерная гравировка</li><li>Развеска и демонтаж</li></ul></div>
+      <div class="role"><h3>Организация</h3><ul><li>Связь между художником и площадкой</li><li>Согласование этапов с куратором пространства</li><li>Сроки, печать, монтаж</li></ul></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Валентина Солонская · графический дизайнер</span>
+    <span>Telegram @valentine_solonski · valentine.solonskaya@ya.ru</span>
+  </footer>
+
+</main>
+
+</body>
+</html>
